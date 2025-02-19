@@ -1,0 +1,76 @@
+.permanent-marker-regular {
+    font-family: "Permanent Marker", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    background-color: #222831;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Permanent Marker', cursive;
+    color: #EEEEEE;
+}
+
+h1 {
+    text-align: center;
+    padding: 0 0 2rem;
+    font-size: 4rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.table {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+}
+
+.cell {
+    width: 7rem;
+    height: 7rem;
+    border: 1px solid black;
+    box-shadow: 0 0 0 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+.scoreboard{
+    padding-top: 1rem;
+    font-size: 3rem;
+}
+.scores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    font-size: 2rem;
+}
+#text {
+    padding-top: 2rem;
+    font-size: 2rem;
+}
+
+#restartBtn{
+font-size: 1.5rem;
+padding: 5px 20px;
+margin-top: 2rem;
+border-radius: 5px;
+border:none;
+background-color: #393E46;
+color:white;
+cursor: pointer;
+}
+
+#restartBtn:active{
+    transform: translateY(2px);
+}
