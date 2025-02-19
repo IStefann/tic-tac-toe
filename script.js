@@ -1,8 +1,10 @@
 const cells = document.querySelectorAll(".cell");
 const text = document.querySelector("#text");
 const restartBtn = document.querySelector("#restartBtn");
-const scoreX = document.querySelector("#scoreX");
-const scoreY = document.querySelector("#scoreY");
+const submitBtn = document.querySelector("#submit");
+const playerOneScore = document.querySelector("#playerOneScore");
+const playerTwoScore = document.querySelector("#playerTwoScore");
+const form = document.getElementById("formId");
 const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
@@ -15,13 +17,40 @@ const winningCombinations = [
 ]
 
 let options = ["", "", "", "", "", "", "", "", ""];
-let currentPlayer = "X";
-let xPoints = 0, yPoints = 0;
 let running = true;
+let currentPlayer, playerOneName, playerTwoName,player1,player2;
 
-initializeGame();
+form.addEventListener("submit", submitForm);
+
+function player(name, mark) {
+    let score = 0;
+    this.mark = mark;
+    const addScore = () => score++;
+    const getScore = () => score;
+    return { getScore, name, addScore, mark };
+}
+
+function submitForm(e) {
+    e.preventDefault();
+    playerOneName = document.querySelector("#playerOne").value;
+    playerTwoName = document.querySelector("#playerTwo").value;
+    document.querySelector(".nonModal").classList.remove("nonModal");
+    const modal = document.querySelector("#modalContainer");
+    modal.classList.remove("modalContainer","active");
+    modal.style.opacity = 0;
+    document.querySelector("#playerOne").value = "";
+    document.querySelector("#playerTwo").value = "";
+    initializeGame();
+}
 
 function initializeGame() {
+     player1 = player(playerOneName, "X");
+     player2 = player(playerTwoName, "O");
+
+    currentPlayer = player1;
+
+    playerOneScore.textContent = `${player1.name}: ${player1.getScore()}`;
+    playerTwoScore.textContent = `${player2.name}: ${player2.getScore()}`;
     cells.forEach(cell => cell.addEventListener("click", cellClick));
     restartBtn.addEventListener("click", restart);
 }
@@ -36,13 +65,13 @@ function cellClick() {
 }
 
 function updateCell(cell, index) {
-    options[index] = currentPlayer;
-    cell.textContent = `${currentPlayer}`;
+    options[index] = currentPlayer.mark;
+    cell.textContent = `${currentPlayer.mark}`;
 }
 
 function changePlayer() {
-    currentPlayer = (currentPlayer == "X") ? "O" : "X";
-    text.textContent = text.textContent = `${currentPlayer}'s turn`;
+    currentPlayer = (currentPlayer.mark == "X") ? currentPlayer = player2 : currentPlayer = player1;
+    text.textContent = text.textContent = `${currentPlayer.name}'s turn`;
 }
 
 function checkWinner() {
@@ -56,21 +85,21 @@ function checkWinner() {
             continue;
         if (cellA == cellB && cellB == cellC) {
             roundWon = true;
-            if (currentPlayer == "X") {
-                xPoints++
-                scoreX.textContent = `${xPoints}`;
+            if (currentPlayer.mark == "X") {
+                currentPlayer.addScore();
+                playerOneScore.textContent = `${currentPlayer.name}: ${currentPlayer.getScore()}`;
             }
             else {
-                yPoints++;
-                scoreY.textContent = `${yPoints}`;
+                currentPlayer = player2;
+                currentPlayer.addScore();
+                playerTwoScore.textContent = `${currentPlayer.name}: ${currentPlayer.getScore()}`;
             }
             break;
         }
     }
-    if (roundWon)
-    {
-        text.textContent = `${currentPlayer} Wins!`;
-    running = false;
+    if (roundWon) {
+        text.textContent = `${currentPlayer.name} Wins!`;
+        running = false;
     }
     else if (!options.includes(""))
         text.textContent = "DRAW!";
@@ -78,12 +107,9 @@ function checkWinner() {
         changePlayer();
 }
 function restart() {
-    if (currentPlayer == "X")
-        currentPlayer = "O"
-    else if (currentPlayer == "O")
-        currentPlayer = "X";
+    currentPlayer = (currentPlayer == player1) ? currentPlayer = player2 : currentPlayer = player1;
     options = ["", "", "", "", "", "", "", "", ""];
-    text.textContent = `${currentPlayer}'s turn`;
+    text.textContent = `${currentPlayer.name}'s turn`;
     cells.forEach(cell => cell.textContent = "");
     running = true;
 }

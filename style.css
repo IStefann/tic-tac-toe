@@ -4,7 +4,7 @@
     font-style: normal;
 }
 
-body{
+body {
     background-color: #222831;
 }
 
@@ -44,33 +44,109 @@ h1 {
     justify-content: center;
     font-size: 4rem;
 }
-.scoreboard{
+
+.scoreboard {
     padding-top: 1rem;
     font-size: 3rem;
 }
-.scores{
+
+.scores {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5rem;
     font-size: 2rem;
 }
+
 #text {
     padding-top: 2rem;
     font-size: 2rem;
 }
 
-#restartBtn{
-font-size: 1.5rem;
-padding: 5px 20px;
-margin-top: 2rem;
-border-radius: 5px;
-border:none;
-background-color: #393E46;
-color:white;
-cursor: pointer;
+#restartBtn {
+    font-size: 1.5rem;
+    padding: 5px 20px;
+    margin-top: 2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #393E46;
+    color: white;
+    cursor: pointer;
 }
 
-#restartBtn:active{
+#restartBtn:active {
+    transform: translateY(2px);
+}
+
+.nonModal{
+    opacity: 0.2;
+}
+
+.modal {
+    background-color: #EEEEEE;
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: none;
+    border-radius: 10px;
+    padding: 2rem;
+}
+.active{
+    z-index: 999;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal>div:first-child{
+    color: #222831;
+    font-size: 2rem;
+}
+.inputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #222831;
+    font-size: 1.5rem;
+    gap: 15px;
+}
+
+.input {
+    color: #222831;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input {
+    width: 10rem;
+    border:none;
+    border-radius: 5px;
+    background-color: #222831;
+    color:#EEEEEE;
+    font-size: 1rem;
+    padding: 2px 5px;
+}
+
+#submit{
+    font-size: 1.5rem;
+    padding: 5px 20px;
+    margin-top: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #222831;
+    color: white;
+    cursor: pointer;
+}
+
+#submit:active {
     transform: translateY(2px);
 }

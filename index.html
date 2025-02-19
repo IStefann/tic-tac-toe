@@ -12,11 +12,12 @@
 </head>
 
 <body>
+    <div id="main" class="nonModal">
     <h1>Tic Tac Toe!</h1>
     <div class="container">
         <div class="table">
             <div cellIndex="0" class="cell"></div>
-            <div cellIndex="1" class="cell"></div>
+            <div cellIndex="1" class="cell"></div>  
             <div cellIndex="2" class="cell"></div>
             <div cellIndex="3" class="cell"></div>
             <div cellIndex="4" class="cell"></div>
@@ -28,10 +29,23 @@
         <p id="text">X's turn</p>
         <p class="scoreboard">Scoreboard:</p>
         <div class="scores">
-            <p>X: <span id="scoreX">0</span></p>
-            <p>O: <span id="scoreY">0</span></p>
+            <p id="playerOneScore"></p>
+            <p id="playerTwoScore"></p>
         </div>
         <button id="restartBtn">Restart</button>
+    </div>
+</div>
+    <div id="modalContainer" class="modalContainer active">
+        <form id="formId">
+        <div class="modal">
+            <div>Enter player names!</div>
+            <div class="inputs">
+            <div class="input">Player 1: <input type="text" name="playerOne" id="playerOne" required></div>
+            <div class="input">Player 2: <input type="text" name="playerTwo" id="playerTwo" required></div>
+        </div>
+        <input type="submit" value="Play!" id="submit"/>
+        </div>
+    </form>
     </div>
     <script src="script.js"></script>
 </body>
